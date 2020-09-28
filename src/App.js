@@ -29,8 +29,15 @@ class App extends React.Component {
 
     render() {
         return (
+
+           
             <>
+            <div className="container-fluid app-nav">
+            <div className="container">
                 <Header />
+                </div>
+                </div>
+                <div className="container">
                 <Switch>
                     {
                         routes.map((route) =>
@@ -44,7 +51,9 @@ class App extends React.Component {
                    
                     <Route component={RouteNotFound} />
                 </Switch>
+                </div>
             </>
+            
         );
     }
 }

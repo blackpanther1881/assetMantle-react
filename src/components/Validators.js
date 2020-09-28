@@ -21,7 +21,7 @@ const Validator = () => {
     {
      validatorsList.map((Validator, index) => {
          return (
-           <div className="card">
+           <div className="card validator">
            <div className="card-body">
              <li className="list">
                <div className="textLabel">

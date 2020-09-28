@@ -31,10 +31,10 @@ class HomePage extends React.Component {
       <div style={{ margin: "20px 0px 0px 0px" }}>
         <LatestBlock />
         <div class="row row-cols-1 row-cols-md-2 card-deck">
-          <div class="col mb-4">
+          <div class="col-md-4 custom-pad">
             <div class="card h-100">
               <div class="card-body">
-                <h5 class="card-title">Node Information</h5>
+                <h6 class="card-title">Node Information</h6>
                 <li className="list">
                   <div className="textLabel">
                   Id
@@ -59,7 +59,7 @@ class HomePage extends React.Component {
                   {nodeInfo.channels}
                   </div>
                 </li>
-                <li className="list">
+                {/* <li className="list">
                   <div className="textLabel">
                   Moniker
                   </div>
@@ -74,17 +74,17 @@ class HomePage extends React.Component {
                   <div className="textValue">
                   {nodeInfo.version}
                   </div>
-                </li>
+                </li> */}
               </div>
             </div>
           </div>
-          <div class="col mb-4">
+          <div class="col-md-4 custom-pad">
             <div class="card h-100">
               <div class="card-body">
-                <h5 class="card-title">Sync Information</h5>
+                <h6 class="card-title">Latest Block Information</h6>
                 <li className="list">
                   <div className="textLabel">
-                  Latest Block Hash
+                    Hash
                   </div>
                   <div className="textValue">
                   {syncInfo.latest_block_hash}
@@ -92,7 +92,7 @@ class HomePage extends React.Component {
                 </li>
                 <li className="list">
                   <div className="textLabel">
-                  Latest Block Height
+                    Height
                   </div>
                   <div className="textValue">
                   {syncInfo.latest_block_height}
@@ -100,7 +100,7 @@ class HomePage extends React.Component {
                 </li>
                 <li className="list">
                   <div className="textLabel">
-                  Latest Block Time
+                    Time
                   </div>
                   <div className="textValue">
                   {syncInfo.latest_block_time}
@@ -113,10 +113,10 @@ class HomePage extends React.Component {
               </div>
             </div>
           </div>
-          <div class="col mb-4">
+          <div class="col-md-4 custom-pad">
             <div class="card h-100">
               <div class="card-body">
-                <h5 class="card-title">Validator Information</h5>
+                <h6 class="card-title">Validator Information</h6>
                 <li className="list">
                   <div className="textLabel">
                   Address

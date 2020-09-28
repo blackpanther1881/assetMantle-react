@@ -57,7 +57,7 @@ class Blocks extends React.Component {
   };
   console.log(firstBlock[firstBlock.length-1],"latest")
     return (
-      <div style={{ margin: "20px 0px 0px 0px" }} >
+      <div style={{ margin: "20px 0px 0px 0px" }} className="blocks">
         <LatestBlock />
         <table className="table">
   <thead>
@@ -73,7 +73,7 @@ class Blocks extends React.Component {
     blockList.map((block, index) => {
           return (
           <tr key={index}>
-            <td> 
+            <td style={{ width: "10%" }}> 
               <Nav.Link
                 onClick={() => handleOnclickHeight(block.header.height)}>
                     <span >
@@ -81,21 +81,21 @@ class Blocks extends React.Component {
                     </span>
                 </Nav.Link>
               </td>
-            <td>{block.block_id.hash}</td>
-            <td>{block.header.proposer_address}</td>
-            <td>{block.header.time}</td>
+            <td style={{ width: "30%" }}>{block.block_id.hash}</td>
+            <td style={{ width: "30%" }}>{block.header.proposer_address}</td>
+            <td style={{ width: "30%" }}>{block.header.time}</td>
           </tr>
           );
         })
     }
     <tr>
-<td><p onClick={()=> this.handleNextBlocks( firstBlock[0], latestBlockHeight)}> Prev</p></td>
-<td><p onClick={()=> this.handleNextBlocks(1, firstBlock[firstBlock.length-1])}>next</p></td>
+
       </tr>
       
   </tbody>
 </table>
-    
+<span className="btn_prev_next" onClick={()=> this.handleNextBlocks( firstBlock[0], latestBlockHeight)}> Prev</span>
+<span className="btn_prev_next" onClick={()=> this.handleNextBlocks(1, firstBlock[firstBlock.length-1])}>Next</span>
       </div>
     );
   }

@@ -71,7 +71,7 @@ class Header extends React.Component {
                             placeholder="Search by txHash / block Height"
                             className="mr-sm-2"
                         />
-                        <Button onClick={this.handleSearchSubmit} variant="outline-info">
+                        <Button className="btn_search" onClick={this.handleSearchSubmit} variant="outline-info">
                             Search
                         </Button>
                     </Form>

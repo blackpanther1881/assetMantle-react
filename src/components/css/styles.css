@@ -179,4 +179,13 @@ body {
   color: #fff;
   border-color: #fff;
 }
+
+.block_row {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 100%;
+  width: 200px;
+}
 /*# sourceMappingURL=styles.css.map */

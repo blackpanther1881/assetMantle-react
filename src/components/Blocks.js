@@ -7,40 +7,40 @@ import { Navbar, Nav, Form, FormControl, Button } from "react-bootstrap";
 import {fetchBlocks} from "../api"
 
 class Blocks extends React.Component {
-    state = {
-        latestBlockHeight:"",
-        blockList:[],
-        currentHeight: "",
-        blocks:[]
-    };
-    
-    componentDidMount() {
-      const url = getStatusURL();
-            axios(url).then(
-              jsonResponse => {
-                this.setState({latestBlockHeight:jsonResponse.data.result.sync_info.latest_block_height})
-                const url = getBlocksURL(1,jsonResponse.data.result.sync_info.latest_block_height);
-                axios(url).then(
-                  blockResponse => {
-                    this.setState({ blockList : blockResponse.data.result.block_metas});
-                  }
-              )
-              }
-          );
-    }
+  state = {
+    latestBlockHeight:"",
+    blockList:[],
+    currentHeight: "",
+    blocks:[]
+};
 
-   handleNextBlocks = (min , max) => {
-    const url = getStatusURL();
-    axios(url).then(
-      jsonResponse => {
-        const url = getBlocksURL(min,max);
+componentDidMount() {
+  const url = getStatusURL();
         axios(url).then(
-          blockResponse => {
-            this.setState({ blockList : blockResponse.data.result.block_metas});
+          jsonResponse => {
+            this.setState({latestBlockHeight:jsonResponse.data.result.sync_info.latest_block_height})
+            const url = getBlocksURL(1,jsonResponse.data.result.sync_info.latest_block_height);
+            axios(url).then(
+              blockResponse => {
+                this.setState({ blockList : blockResponse.data.result.block_metas});
+              }
+          )
           }
-      )
+      );
+}
+
+handleNextBlocks = (min , max) => {
+const url = getStatusURL();
+axios(url).then(
+  jsonResponse => {
+    const url = getBlocksURL(min,max);
+    axios(url).then(
+      blockResponse => {
+        this.setState({ blockList : blockResponse.data.result.block_metas});
       }
-  );
+  )
+  }
+);
 };
   render() {
     const { blockList, latestBlockHeight } = this.state;
@@ -55,6 +55,12 @@ class Blocks extends React.Component {
               currentHeight: height
         });
   };
+  const handleOnclickBlockHash = (hash) => {
+    this.props.history.push({
+      pathname:  `/block/${hash}`,
+      state: { searchText: hash }
+  });
+};
   console.log(firstBlock[firstBlock.length-1],"latest")
     return (
       <div style={{ margin: "20px 0px 0px 0px" }} className="blocks">
@@ -81,8 +87,15 @@ class Blocks extends React.Component {
                     </span>
                 </Nav.Link>
               </td>
-            <td style={{ width: "30%" }}>{block.block_id.hash}</td>
-            <td style={{ width: "30%" }}>{block.header.proposer_address}</td>
+            <td style={{ width: "30%" }}>
+            <Nav.Link
+                onClick={() => handleOnclickBlockHash(block.block_id.hash)}>
+                    <span className="block_row">
+                        {block.block_id.hash}
+                    </span>
+                </Nav.Link>
+            </td>
+            <td style={{ width: "30%" }}><span className="block_row">{block.header.proposer_address}</span></td>
             <td style={{ width: "30%" }}>{block.header.time}</td>
           </tr>
           );

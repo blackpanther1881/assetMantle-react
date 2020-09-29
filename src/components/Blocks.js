@@ -55,6 +55,12 @@ class Blocks extends React.Component {
               currentHeight: height
         });
   };
+  const handleOnclickBlockHash = (hash) => {
+    this.props.history.push({
+      pathname:  `/block/${hash}`,
+      state: { searchText: hash }
+  });
+};
   console.log(firstBlock[firstBlock.length-1],"latest")
     return (
       <div style={{ margin: "20px 0px 0px 0px" }} >
@@ -81,7 +87,14 @@ class Blocks extends React.Component {
                     </span>
                 </Nav.Link>
               </td>
-            <td>{block.block_id.hash}</td>
+            <td>
+            <Nav.Link
+                onClick={() => handleOnclickBlockHash(block.block_id.hash)}>
+                    <span >
+                        {block.block_id.hash}
+                    </span>
+                </Nav.Link>
+            </td>
             <td>{block.header.proposer_address}</td>
             <td>{block.header.time}</td>
           </tr>

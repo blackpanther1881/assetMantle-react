@@ -1,9 +1,10 @@
 import React from "react";
 import axios from "axios";
 import {
-    getBlockURL,
+    getBlockURL, getBlockByHashURL
 } from '../constants/url';
 import LatestBlock from "./LatestBlock"
+import BlockTransactions from "./BlockTransactions"
 export default class SearchResultsPage extends React.Component {
     state = {
         isLoading: true,
@@ -11,15 +12,13 @@ export default class SearchResultsPage extends React.Component {
         searchResults: [],
     };
 
-    handleSearch = () => {
-        let searchText = this.props.location.state.searchText;
-        const url = getBlockURL(searchText);
+    handleSearch = (url, searchText) => {
         console.log(searchText)
              axios(url).then(
                 jsonResponse => {
                  this.setState({
                     isLoading: false,
-                    searchText: searchText,
+                    searchText: searchText, 
                     searchResults: jsonResponse.data.result.block.header
                 })
            
@@ -30,7 +29,16 @@ export default class SearchResultsPage extends React.Component {
     };
 
     componentDidMount() {
-        this.handleSearch();
+        let searchText = this.props.location.state.searchText;
+        if(/^[0-9]{1,40}$/.test(searchText)){
+            const url = getBlockURL(searchText);
+            this.handleSearch(url, searchText);
+        }
+        else{
+            const url = getBlockByHashURL(searchText)
+            this.handleSearch(url, searchText);
+        }
+ 
     }
 
     componentDidUpdate(prevProps) {
@@ -61,11 +69,10 @@ export default class SearchResultsPage extends React.Component {
                     <p className="card-text">validators hash: "{this.state.searchResults.validators_hash}"</p>
                     </div>
                     </div>
-                
-              
                 : 
                     <p>NO Data Found</p>
                 }
+                <BlockTransactions height={this.state.searchResults.height}/>
             </>
         );
         console.log(this.state.searchResults,"serach")

@@ -1,6 +1,6 @@
 import React from "react";
 import axios from "axios";
-import {getStatusURL, getBlockTransactionsURL} from "../constants/url"
+import { getBlockTransactionsURL} from "../constants/url"
 import {
     getBlockURL,
 } from '../constants/url';

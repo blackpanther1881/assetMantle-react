@@ -13,68 +13,23 @@ class Header extends React.Component {
         this.props.history.push({ pathname: route });
     };
 
-    handleSearchInput = event => {
-        this.setState({
-            searchText: event.target.value
-        });
-    };
-
-    handleSearchSubmit = () => {
-        if (this.state.searchText) {
-            let text = this.state.searchText;
-            this.setState({ searchText: "" })
-            if (/^[A-Z0-9]{64}$/.test(text) ) {
-                this.props.history.push({
-                    pathname: `/transaction/${text}`,
-                    state: { searchText: text }
-                });
-            }
-            else if(/^[0-9]{1,40}$/.test(text)){
-                this.props.history.push({
-                    pathname:  `/block/${text}`,
-                    state: { searchText: text }
-                });
-            }
-          
-        } else {
-            alert("Please enter some search text!");
-        }
-    };
-
-    handleSearchKeyUp = event => {
-        event.preventDefault();
-        if (event.key === 'Enter' && event.keyCode === 13) {
-            this.handleSearchSubmit();
-        }
-        
-    }
-
-    handleFormSubmit = e => e.preventDefault();
     render() {
         const { validators } = this.state;
         return (
             <>
                 <Navbar bg="dark" variant="dark">
+                <Navbar.Brand ><Nav.Link onClick={this.handleRoute("/")}>Asset Mantle</Nav.Link></Navbar.Brand>
                     <Nav className="mr-auto">
-                        <Nav.Link onClick={this.handleRoute("/")}>Home</Nav.Link>
-                        {/* <Nav.Link onClick={this.handleRoute("/about")}>Genesis</Nav.Link> */}
-                        <Nav.Link onClick={this.handleRoute("/validators")}>Validators</Nav.Link>
-                        <Nav.Link onClick={this.handleRoute("/blocks")}>Blocks</Nav.Link>
+                        
+                        <Nav.Link onClick={this.handleRoute("/Dashboard")}>Dashboard</Nav.Link>
                         <Nav.Link onClick={this.handleRoute("/transactions")}>Transactions</Nav.Link>
+                        <Nav.Link onClick={this.handleRoute("/Docs")}>Docs</Nav.Link>
                     </Nav>
-                    <Form inline onSubmit={this.handleFormSubmit}>
-                        <FormControl
-                            onChange={this.handleSearchInput}
-                            value={this.state.searchText}
-                            onKeyUp={this.handleSearchKeyUp}
-                            type="text"
-                            placeholder="Search by txHash / block Height"
-                            className="mr-sm-2"
-                        />
-                        <Button onClick={this.handleSearchSubmit} variant="outline-info">
-                            Search
-                        </Button>
-                    </Form>
+                    <Nav>
+                    <Nav.Link onClick={this.handleRoute("/CreateAccount")}>Sign Up</Nav.Link>
+                    <Nav.Link onClick={this.handleRoute("/AccountRecover")}>Recover</Nav.Link>
+                    </Nav>
+            
                 </Navbar>
         
             </>

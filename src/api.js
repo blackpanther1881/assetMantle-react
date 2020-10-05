@@ -1,4 +1,4 @@
-import {getStatusURL, getBlocksURL} from "./constants/url"
+import {getBlocksURL} from "./constants/url"
 import axios from "axios";
 
 export const fetchBlocks = (lastblockheight) => {

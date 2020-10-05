@@ -1,36 +1,42 @@
 import React from "react";
 import { Route, Switch, withRouter } from "react-router-dom";
-import { AboutPage, HomePage, SearchResultsPage, RouteNotFound , Validator, Blocks, Header, BlockDetails, Transaction, Transactions} from "./components";
+import { HomePage, RouteNotFound , Header,
+    Transactions, Account, CreateAccount, AccountRecover, Dashboard, Docs} from "./components";
 import { Navbar, Nav, Form, FormControl, Button } from "react-bootstrap";
 import axios from "axios";
 const routes = [{
     path: '/',
     component: HomePage,
-}, {
-    path: '/blocks',
-    component: Blocks,
-}, {
-    path: '/blockResults/:height',
-    component: BlockDetails,
-}, {
+},{
     path: '/transactions',
     component: Transactions,
 }, {
-    path: '/transaction/:txHash',
-    component: Transaction,
+    path: '/account',
+    component: Account,
 }, {
-    path: '/validators',
-    component: Validator,
+    path: '/CreateAccount',
+    component: CreateAccount,
 }, {
-    path: '/block/:height',
-    component: SearchResultsPage,
+    path: '/AccountRecover',
+    component: AccountRecover,
+}, {
+    path: '/Dashboard',
+    component: Dashboard,
+}, {
+    path: '/Docs',
+    component: Docs,
 }];
 class App extends React.Component {
 
     render() {
         return (
             <>
+            <div className="container-fluid app-nav">
+            <div className="container">
                 <Header />
+                </div>
+                </div>
+               
                 <Switch>
                     {
                         routes.map((route) =>
@@ -45,6 +51,7 @@ class App extends React.Component {
                     <Route component={RouteNotFound} />
                 </Switch>
             </>
+            
         );
     }
 }

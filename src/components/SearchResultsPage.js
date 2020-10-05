@@ -49,18 +49,19 @@ export default class SearchResultsPage extends React.Component {
         }
     }
 
+
     render() {
         let toRender = this.state.isLoading ? (
             <h1>Loading...</h1>
         ) : (
             <>
             <LatestBlock />
-                <h4>Search Results</h4>
+               
                 {/* <ul>
                     <li>Search: "{this.state.searchText}"</li>
                 </ul> */}
                 {this.state.searchResults ?
-                    <div className="card" >
+                    <div className="card search_results">
                     <div className="card-body">
                     <p className="card-text">Height: "{this.state.searchResults.height}"</p>
                     <p className="card-text">Chain ID: "{this.state.searchResults.chain_id}"</p>

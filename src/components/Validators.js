@@ -1,13 +1,14 @@
 import React, {useState, useEffect} from "react";
 import axios from "axios";
-import {getValidatorURL} from "../constants/url"
+import {getValidatorsURL} from "../constants/url"
 import LatestBlock from "./LatestBlock"
 const Validator = () => {
 
   const [validatorsList, setValidatorsList] = useState([]);
-  const url = getValidatorURL();
+  const url = getValidatorsURL();
   const fetchValidator = async () => {
     const response = await axios.get(url);
+    console.log(response)
     setValidatorsList(response.data.result.validators)
   
   } 
@@ -17,11 +18,10 @@ const Validator = () => {
 
   return (
     <div style={{ margin: "20px 0px 0px 0px" }}>
-      <LatestBlock />
-    {
+    {/* {
      validatorsList.map((Validator, index) => {
          return (
-           <div className="card">
+           <div className="card validator">
            <div className="card-body">
              <li className="list">
                <div className="textLabel">
@@ -43,7 +43,8 @@ const Validator = () => {
               </div>
          );
      })
-     }
+     } */}
+     <p>vad</p>
    </div>
   );
 }

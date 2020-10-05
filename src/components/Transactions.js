@@ -9,8 +9,8 @@ export default class Transactions extends React.Component {
     
     render() {
 
-        return <div style={{ margin: "20px 0px 0px 20px" }}>
-            <LatestBlock />
-        </div>;
+        return (     
+             <div className="container"><p>Transactions</p>
+             </div>);
     }
 }
